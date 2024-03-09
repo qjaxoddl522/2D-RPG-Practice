@@ -5,6 +5,7 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     public float Speed;
+    public GameManager manager;
     float h;
     float v;
     int lastdir = 0; //마지막으로 누른 방향키
@@ -22,8 +23,8 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-        h = Input.GetAxisRaw("Horizontal");
-        v = Input.GetAxisRaw("Vertical");
+        h = manager.isAction ? 0 : Input.GetAxisRaw("Horizontal");
+        v = manager.isAction ? 0 : Input.GetAxisRaw("Vertical");
 
         if (Input.GetKeyDown(KeyCode.UpArrow)) {
             lastdir = 1;
@@ -63,7 +64,7 @@ public class Player : MonoBehaviour
 
         //오브젝트 스캔(스페이스바)
         if (Input.GetButtonDown("Jump") && scanObject != null) {
-            Debug.Log("Scanned : " + scanObject.name);
+            manager.Action(scanObject);
         }
 
         //애니메이션
