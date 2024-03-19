@@ -54,7 +54,7 @@ public class QuestManager : MonoBehaviour
         questActionIndex = 0; //다음 퀘스트를 하기 위한 대화 초기화
     }
 
-    void ControlObject()
+    public void ControlObject()
     {
         switch (questId) {
             case 10:
@@ -63,7 +63,10 @@ public class QuestManager : MonoBehaviour
                 }
                 break;
             case 20:
-                if (questActionIndex == 1) { //퀘스트 대화 끝나면 오브젝트 비활성화
+                if (questActionIndex == 0) { //세이브 불러올 때도 오브젝트 활성화 위함
+                    questObject[0].SetActive(true);
+                }
+                else if (questActionIndex == 1) { //퀘스트 대화 끝나면 오브젝트 비활성화
                     questObject[0].SetActive(false);
                 }
                 break;
